@@ -49,16 +49,13 @@ else:
    sys.exit()
 
 #Main body of script
-jd1 = day - 32075
-jd2 = 1461 * (year + 4800 + (month - 14) // 12) // 4
-jd3 = 367 * (month - 2 - (month - 14) // 12 * 12) // 12
-jd4 = -3 * ((year + 4900 + (month - 14) // 12) / 100) // 4
-
-jd = jd1 + jd2 + jd3 + jd4
+jd = day - 32075.0 \
+     + int(1461.0 * (year + 4800.0 + int((month - 14.0) / 12.0)) / 4.0) \
+     + int(367.0 * (month - 2.0 - int((month - 14.0) / 12.0) * 12.0) /12.0) \
+     - int(3.0 * (int((year + 4900.0 + int((month - 14.0) / 12.0)) / 100.0)) / 4.0)
 
 jd_mid = jd - 0.5
-d_frac = (second + 60 * (minute + 60 * hour)) // 86400
-#jd_frac = "%.1f" % floor(jd_mid + d_frac)
+d_frac = (second + 60 * (minute + 60 * hour)) / 86400
 jd_frac = jd_mid + d_frac
 
 print(jd_frac)
